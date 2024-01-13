@@ -5,40 +5,27 @@ import (
 )
 
 func main() {
-	var monthlyIncome, otherAnnualIncome, fixedMonthlyCosts, plannedAnnualExpenses, annualSavings float64
+    const maandenPerJaar = 12
 
+    var maandelijksInkomen float64 = 2140.0
+    var extraJaarlijksInkomen float64 = 4000.0
+    var vasteMaandelijkseKost float64 = 400.0
+    var geplandeJaarlijkseUitgaven float64 = 10000
+    var sparenPerJaar float64 = 10000
 
-        //Maandelijks inkomen: ")
-        monthlyIncome=2140
+    vereistJaarlijksSparen := sparenPerJaar - extraJaarlijksInkomen
+    if vereistJaarlijksSparen < 0 {
+        geplandeJaarlijkseUitgaven += -vereistJaarlijksSparen
+        vereistJaarlijksSparen = 0
+    }
 
-        //Extra jaarlijks inkomen: ")
-        otherAnnualIncome=4000
+    totaalJaarlijksInkomen := maandelijksInkomen * maandenPerJaar
+    totaleUitgaven := vasteMaandelijkseKost * maandenPerJaar + geplandeJaarlijkseUitgaven
+    maandelijksVrijTeBesteden := (totaalJaarlijksInkomen - totaleUitgaven - vereistJaarlijksSparen) / maandenPerJaar
 
-        //Vaste verplichte maandelijkse kosten: ")
-        fixedMonthlyCosts=400
-
-        //Geplande jaarlijkse uitgaven (b.v., reizen, geplande aankopen): ")
-        plannedAnnualExpenses=11000
-
-        //Jaarlijks doel om te sparen: ")
-        annualSavings=10000
-
-        // Berekeningen
-        annualSavingsRequired := annualSavings - otherAnnualIncome
-        if annualSavingsRequired < 0 {
-            plannedAnnualExpenses += -annualSavingsRequired
-            annualSavingsRequired = 0
-        }
-        totalAnnualIncome := (monthlyIncome * 12)
-        totalPlannedAnnualExpenses := plannedAnnualExpenses
-        totalAnnualSavings := annualSavingsRequired
-        totalExpenses := (fixedMonthlyCosts * 12) + totalPlannedAnnualExpenses
-        monthlyFunBudget := (totalAnnualIncome - totalExpenses - totalAnnualSavings) / 12
-
-        // Output
-        fmt.Printf("\nMaandelijks naar Fun Rekening: €%.2f\n", monthlyFunBudget)
-        fmt.Printf("Maandelijks laten staan op Zichtrekening (Vaste verplichte kosten): €%.2f\n", fixedMonthlyCosts)
-        fmt.Printf("Maandelijks naar Geplande Spaarrekening: €%.2f\n", plannedAnnualExpenses/12)
-        fmt.Printf("Maandelijks naar Lange Termijn Spaarrekening: €%.2f\n", totalAnnualSavings/12)
-        fmt.Printf("Jaarlijkse bedrag extra sparen op Lange Termijn Spaarrekening: €%.2f\n", totalAnnualSavings)
+    fmt.Printf("\nMaandelijks naar Vrij Te Besteden Rekening: €%.2f\n", maandelijksVrijTeBesteden)
+    fmt.Printf("Maandelijks laten staan op Zichtrekening (Vaste verplichte kosten): €%.2f\n", vasteMaandelijkseKost)
+    fmt.Printf("Maandelijks naar Geplande Spaarrekening: €%.2f\n", geplandeJaarlijkseUitgaven/maandenPerJaar)
+    fmt.Printf("Maandelijks naar Lange Termijn Spaarrekening: €%.2f\n", vereistJaarlijksSparen/maandenPerJaar)
+    fmt.Printf("Jaarlijkse bedrag extra sparen op Lange Termijn Spaarrekening: €%.2f\n", vereistJaarlijksSparen)
 }
