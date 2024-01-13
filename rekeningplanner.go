@@ -41,5 +41,4 @@ func main() {
         fmt.Printf("Maandelijks naar Geplande Spaarrekening: €%.2f\n", plannedAnnualExpenses/12)
         fmt.Printf("Maandelijks naar Lange Termijn Spaarrekening: €%.2f\n", totalAnnualSavings/12)
         fmt.Printf("Jaarlijkse bedrag extra sparen op Lange Termijn Spaarrekening: €%.2f\n", totalAnnualSavings)
-        fmt.Println("\n\n")
 }
